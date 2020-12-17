@@ -3,8 +3,13 @@ import ReactMarkdown from "react-markdown/with-html";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import style from "react-syntax-highlighter/dist/cjs/styles/prism/dracula";
 
+import RemarkMathPlugin from "remark-math"
+import {BlockMath, InlineMath} from "react-katex"
+import 'katex/dist/katex.min.css'
+
 import { Layout, Image, SEO, Bio } from "@components/common";
 import { getPostBySlug, getPostsSlugs } from "@utils/posts";
+
 
 export default function Post({ post, frontmatter, nextPost, previousPost }) {
   return (
@@ -24,8 +29,16 @@ export default function Post({ post, frontmatter, nextPost, previousPost }) {
         <ReactMarkdown
           className="mb-4 prose lg:prose-lg dark:prose-dark"
           escapeHtml={false}
+          plugins={[
+            RemarkMathPlugin
+          ]}
           source={post.content}
-          renderers={{ code: CodeBlock, image: MarkdownImage }}
+          renderers={{
+            code: CodeBlock,
+            image: MarkdownImage,
+            math: ({value})=><BlockMath>{value}</BlockMath>,
+            inlineMath: ({value})=><InlineMath>{value}</InlineMath>
+          }}
         />
         <hr className="mt-4" />
         <footer>
