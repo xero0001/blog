@@ -1,15 +1,14 @@
 {
   "siteMetadata": {
-    "title": "Next.js Starter Blog",
+    "title": "ARAIS BLOG",
     "author": {
-      "name": "Jose Felix",
-      "summary": "who works building clean user interfaces with React."
+      "name": "정현석",
+      "summary": "풀스택 개발자, 아라이스 출판사 대표이자, 프리랜서를 그만두려는 사람. Vercel, Next.js, Apollo, Prisma, Unity"
     },
-    "description": "A blog created with Next.js and Tailwind.css",
-    "siteUrl": "https://nextjs-starter-blog-demo.netlify.app/",
-    "language": "en-US",
+    "description": "Next.js와 Tailwind.css로 만들어진 블로그",
+    "siteUrl": "https://arais-blog.vercel.app/",
+    "language": "ko-KR",
     "social": {
-      "twitter": "Jose_R_Felix"
     }
   }
 }

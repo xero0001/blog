@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 export function Layout({ children }) {
   return (
     <div className="w-full min-h-screen dark:bg-gray-700 dark:text-white">
-      <div className="max-w-screen-sm px-4 py-12 mx-auto antialiased font-body">
+      <div className="max-w-screen-md px-4 lg:px-16 py-12 mx-auto antialiased font-body">
         <Header />
         <main>{children}</main>
         <footer className="text-lg font-light">
@@ -69,7 +69,7 @@ const LargeTitle = () => (
           "dark:text-white"
         )}
       >
-        Next.Js Starter Blog
+        ARAIS 블로그
       </a>
     </Link>
   </h1>
@@ -84,7 +84,7 @@ const SmallTitle = () => (
           "dark:text-white"
         )}
       >
-        Next.Js Starter Blog
+        ARAIS 블로그
       </a>
     </Link>
   </h1>

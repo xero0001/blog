@@ -5,38 +5,95 @@ export function getPostsFolders() {
   // Get all posts folders located in `content/posts`
   const postsFolders = fs
     .readdirSync(`${process.cwd()}/content/posts`)
-    .map((folderName) => ({
-      directory: folderName,
-      filename: `${folderName}.md`,
+    .map((filename) => ({
+      filename: `${filename}`,
     }));
 
   return postsFolders;
 }
 
+// export function getPostsFolders() {
+//   // Get all posts folders located in `content/posts`
+//   const postsFolders = fs
+//     .readdirSync(`${process.cwd()}/content/posts`)
+//     .map((folderName) => ({
+//       directory: folderName,
+//       filename: `${folderName}.md`,
+//     }));
+
+//   return postsFolders;
+// }
+
+// export function getPostsFiles() {
+//   // Get all posts folders located in `content/posts`
+//   const postsFiles = fs.readFileSync(`${process.cwd()}/content/posts`)
+//     // .map((fileName) => ({
+//     //   filename: `${fileName}.md`,
+//     // }));
+
+//   console.log(postsFiles)
+
+//   return [];
+//   return postsFiles;
+// }
+
 // Get day in format: Month day, Year. e.g. April 19, 2020
 function getFormattedDate(date) {
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  const formattedDate = date.toLocaleDateString("en-US", options);
-
+  // const options = { year: "numeric", month: "long", day: "numeric" };
+  // const formattedDate = date.toLocaleDateString("en-US", options);
+  const formattedDate=date.toString().substr(0,10);
   return formattedDate;
 }
 
 export function getSortedPosts() {
   const postFolders = getPostsFolders();
+  // const postFiles = getPostsFiles();
+
+  // const posts = postFolders
+  //   .map(({ filename, directory }) => {
+  //     // Get raw content from file
+  //     const markdownWithMetadata = fs
+  //       .readFileSync(`content/posts/${directory}/${filename}`)
+  //       .toString();
+
+  //     // Parse markdown, get frontmatter data, excerpt and content.
+  //     const { data, excerpt, content } = matter(markdownWithMetadata);
+
+  //     const frontmatter = {
+  //       ...data,
+  //       date: getFormattedDate(data.date),
+  //     };
+
+  //     // Remove .md file extension from post name
+  //     const slug = filename.replace(".md", "");
+
+  //     return {
+  //       slug,
+  //       frontmatter,
+  //       excerpt,
+  //       content,
+  //     };
+  //   })
+  //   .sort(
+  //     (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+  //   );
 
   const posts = postFolders
-    .map(({ filename, directory }) => {
+    .map(({ filename }) => {
       // Get raw content from file
       const markdownWithMetadata = fs
-        .readFileSync(`content/posts/${directory}/${filename}`)
+        .readFileSync(`content/posts/${filename}`)
         .toString();
 
       // Parse markdown, get frontmatter data, excerpt and content.
       const { data, excerpt, content } = matter(markdownWithMetadata);
 
+      const date = parseInt(data.date.replace(/[^0-9]/g,''));
+
       const frontmatter = {
         ...data,
         date: getFormattedDate(data.date),
+        sortDate: date<100000000?date*100:date
       };
 
       // Remove .md file extension from post name
@@ -50,9 +107,11 @@ export function getSortedPosts() {
       };
     })
     .sort(
-      (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+      (a, b) => b.frontmatter.sortDate - a.frontmatter.sortDate
     );
-
+    // .sort(
+    //   (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
+    // );
   return posts;
 }
 
