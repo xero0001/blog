@@ -1,6 +1,6 @@
 ---
 title: 🎮 Game Implementation 자료
-description: 굉장히 좋은 사이트를 발견하였다.
+description: 관심있는 자료모음
 tags: "게임"
 date: "2020-12-26S02"
 ---
