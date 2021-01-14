@@ -3,7 +3,7 @@
     "title": "ARAIS BLOG",
     "author": {
       "name": "정현석",
-      "summary": "풀스택 개발자, 아라이스 출판사 대표이자, 프리랜서를 그만두려는 사람. Vercel, Next.js, Apollo, Prisma, Unity"
+      "summary": "웹 개발 프리랜서, 아라이스 출판사 대표, 프리랜서를 그만두려는 사람. Vercel, Next.js, Apollo, Prisma, Unity"
     },
     "description": "Next.js와 Tailwind.css로 만들어진 블로그",
     "siteUrl": "https://arais-blog.vercel.app/",
